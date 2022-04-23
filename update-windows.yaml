@@ -1,0 +1,17 @@
+---
+- name: update windows host
+  hosts: all
+  gather_facts: false
+  
+  tasks:
+    - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.txt
+      ansible.windows.win_updates:
+        category_names: '*'
+        state: searched
+        log_path: C:\ansible_wu.txt
+
+    - name: Install all updates without a scheduled task
+      ansible.windows.win_updates:
+        category_names: '*'
+        reboot: yes
+        reboot_timeout: 3600
