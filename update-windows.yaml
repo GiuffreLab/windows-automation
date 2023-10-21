@@ -9,9 +9,11 @@
         category_names: '*'
         state: searched
         log_path: C:\ansible_wu.txt
+      register: response
 
     - name: Install all updates without a scheduled task
       ansible.windows.win_updates:
         category_names: '*'
         reboot: yes
         reboot_timeout: 3600
+      register: response
