@@ -35,10 +35,3 @@
       loop_control:
         label: "{{ item.item }}"
       when: item.found_update_count > 0
-
-    - name: Check the status of the update installation
-      debug:
-        msg: "Update installation for category {{ item.item }}: {{ item }}"
-      loop: "{{ update_response.results }}"
-      loop_control:
-        label: "{{ item.item }}"
