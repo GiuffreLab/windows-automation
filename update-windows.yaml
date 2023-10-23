@@ -19,26 +19,26 @@
 
     - name: Check if updates are found and log the details
       debug:
-        msg: "Updates found for category {{ item }}: {{ response.results[item.index].found_update_count }}"
+        msg: "Updates found for category {{ item.item }}: {{ item.found_update_count }}"
+      when: item.found_update_count > 0
       loop: "{{ response.results }}"
       loop_control:
-        index_var: index
-      when: item.found_update_count > 0
+        label: "{{ item.item }}"
 
     - name: Install all updates and reboot if necessary
       ansible.windows.win_updates:
-        category_names: "{{ item }}"
+        category_names: "{{ item.item }}"
         reboot: yes
         reboot_timeout: "{{ reboot_timeout }}"
       register: update_response
-      loop: "{{ category_names }}"
+      loop: "{{ response.results }}"
       loop_control:
-        label: "{{ item }}"
-      when: response.results[item.index].found_update_count > 0
+        label: "{{ item.item }}"
+      when: item.found_update_count > 0
 
     - name: Check the status of the update installation
       debug:
-        msg: "Update installation for category {{ item }}: {{ update_response.results[item.index] }}"
+        msg: "Update installation for category {{ item.item }}: {{ item }}"
       loop: "{{ update_response.results }}"
       loop_control:
-        index_var: index
+        label: "{{ item.item }}"
