@@ -13,6 +13,7 @@
       - "FeaturePacks"
       - "ServicePacks"
       - "Tools"
+      - "DefinitionUpdates"
     reboot_timeout: 3600
 
   tasks:
