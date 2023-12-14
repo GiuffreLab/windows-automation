@@ -25,7 +25,6 @@
     - name: Check if updates are found and log the details
       ansible.builtin.debug:
         msg: "Updates found for category {{ item.item }}: {{ item.found_update_count }}"
-      when: item.found_update_count > 0
       loop: "{{ response.results }}"
       loop_control:
         label: "{{ item.item }}"
@@ -39,4 +38,8 @@
       loop: "{{ response.results }}"
       loop_control:
         label: "{{ item.item }}"
-      when: item.found_update_count > 0
+
+    - name: Wait for system to become available
+      ansible.builtin.wait_for_connection:
+        delay: 60
+        timeout: 360
