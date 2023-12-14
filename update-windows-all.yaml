@@ -9,6 +9,7 @@
       - "SecurityUpdates"
       - "UpdateRollups"
       - "Updates"
+      - "Drivers"
     reboot_timeout: 3600
 
   tasks:
