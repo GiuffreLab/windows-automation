@@ -4,6 +4,11 @@
   gather_facts: false
   vars:
     log_path: "C:\\ansible_wu.txt"
+    category_names:
+      - "CriticalUpdates"
+      - "SecurityUpdates"
+      - "UpdateRollups"
+      - "Updates"
     reboot_timeout: 3600
 
   tasks:
