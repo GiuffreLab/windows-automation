@@ -33,7 +33,7 @@
       loop: "{{ response.results }}"
       loop_control:
         label: "{{ item.item }}"
-      when: item.found_update_count > int 0
+      when: item.found_update_count > 0
 
     - name: Install all updates and reboot if necessary
       ansible.windows.win_updates:
@@ -44,7 +44,7 @@
       loop: "{{ response.results }}"
       loop_control:
         label: "{{ item.item }}"
-      when: item.found_update_count > int 0
+      when: item.found_update_count > 0
 
     - name: Wait for system to become available
       ansible.builtin.wait_for_connection:
